@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db import models
 from django.conf import settings
+from django.shortcuts import reverse
 
 # Create your models here.
 
@@ -20,22 +21,32 @@ class Size(models.Model):
 class Item(models.Model):
     name = models.CharField(max_length=255)
     price = models.FloatField()
+    discount_price = models.FloatField(blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     size = models.ForeignKey(Size, on_delete=models.CASCADE)
+    slug = models.SlugField()
+    short_description = models.CharField(max_length=255)
+    long_description = models.CharField(max_length=255, blank=True, null=True)
+    
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('core:product', kwargs= {
+            'slug': self.slug
+        })
 
     # sku = models.CharField(max_length=255)
     # weight = models.FloatField()
     # cart_description = models.CharField(max_length=255)
-    # short_description = models.CharField(max_length=255)
-    # long_description = models.CharField(max_length=255)
+
     # thumbnail = models.ImageField(upload_to='thumbnails/')
     # image = models.ImageField(upload_to='products/')
     # stock = models.FloatField()
     # live = models.BooleanField(default=True)
     # location = models.CharField(max_length=255)
     # warehouse = models.CharField(max_length=255)
-    def __str__(self):
-        return self.name
+  
 
 class OrderItem(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)

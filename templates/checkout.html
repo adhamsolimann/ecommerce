@@ -5,15 +5,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Material Design for Bootstrap</title>
+    <title>Checkout page - Marketplace</title>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <link rel="stylesheet" href="{% static 'https://use.fontawesome.com/releases/v5.11.2/css/all.css' %}" />
     <!-- Google Fonts Roboto -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
-    <!-- MDB -->
-    <link rel="stylesheet" href="{% static 'css/mdb.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap' %}" />
     <!-- Custom styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}" ></script>
 </head>
 <body>
     <!-- Navbar -->
@@ -33,17 +34,17 @@
             </a>
             <!-- Left links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="../">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../product"> Products</a>
+                </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="https://mdbootstrap.com/">Home</a>
+                    <a class="nav-link" href="">Checkout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://mdbootstrap.com/docs/standard/">About MDB</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://mdbootstrap.com/docs/standard/getting-started/installation/">Free download</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://mdbootstrap.com/education/bootstrap/">Free tutorials</a>
+                    <a class="nav-link" href="">Extra Item</a>
                 </li>
             </ul>
             <!-- Left links -->
@@ -64,8 +65,9 @@
             <a class="nav-link me-3" href="#">
                 <i class="fab fa-twitter"></i>
             </a>
-            <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="border rounded px-2 nav-link" target="_blank"> <i class="fab fa-github me-2"></i>MDB GitHub </a>
-        </div>
+            <a href="https://github.com/adhamsolimann/ecommerce.git" class="border rounded px-2 nav-link"
+            target="_blank">
+            <i class="fab fa-github me-2"></i>Marketplace Github</a>        </div>
         <!-- Right elements -->
     </div>
     <!-- Container wrapper -->
@@ -361,14 +363,12 @@
 
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2); text-color: #e0e0e0;">
-        © 2022 Copyright:
-        <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        © 2024 Copyright:
+        <a class="text-white" href="">Company</a>
     </div>
     <!-- Copyright -->
 </footer>
 
-    <!-- MDB -->
-    <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
     <!-- Custom scripts -->
     <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 </body>
