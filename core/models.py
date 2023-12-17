@@ -27,12 +27,22 @@ class Item(models.Model):
     slug = models.SlugField()
     short_description = models.CharField(max_length=255)
     long_description = models.CharField(max_length=255, blank=True, null=True)
-    
+
     def __str__(self):
         return self.name
     
     def get_absolute_url(self):
         return reverse('core:product', kwargs= {
+            'slug': self.slug
+        })
+    
+    def get_add_to_cart_url(self):
+        return reverse('core:add-to-cart', kwargs={
+            'slug': self.slug
+        })
+    
+    def get_remove_from_cart(self):
+        return reverse('core:remove-from-cart', kwargs={
             'slug': self.slug
         })
 
@@ -49,21 +59,25 @@ class Item(models.Model):
   
 
 class OrderItem(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                              on_delete=models.CASCADE)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)  
+    ordered = models.BooleanField(default=False)
     def __str__(self):
-        return self.title
+        return f"{self.quantity} of {self.item.name}"
 
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
     items = models.ManyToManyField(OrderItem)
-    shipping_fees = models.PositiveIntegerField()
-    creation_date = models.DateTimeField()
+    shipping_fees = models.PositiveIntegerField(blank=True, null=True)
+    creation_date = models.DateTimeField(auto_now_add=True)
+    ordered_date = models.DateTimeField()
     ordered = models.BooleanField(default=False)
     shipped = models.BooleanField(default=False)
-    delivery_date = models.DateTimeField()
+    delivery_date = models.DateTimeField(blank=True, null=True)
     tracking_number = models.CharField(max_length=255, blank=True, null=True)
     def __str__(self):
         return self.user.username

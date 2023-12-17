@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+
 {% load static %}
 <DOCTYPE html>
 <html lang="en">
@@ -114,10 +116,10 @@
 
                     <strong><p style="font-size: 20px;">Description</p></strong>
 
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa sint voluptatibus! Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente.</p>
+                    <p> {{ object.description}} </p>
 
-                    <form class="d-flex justify-content-left">
-                        <!-- Default input -->
+                    <!-- <form class="d-flex justify-content-left">
+
                         <div class="form-outline me-1" style="width: 100px;">
                             <input type="number" value="1" class="form-control" />
                         </div>
@@ -125,7 +127,14 @@
                             Add to cart
                             <i class="fas fa-shopping-cart ms-1"></i>
                         </button>
-                    </form>
+                    </form> -->
+                    <a href=" {{ object.get_add_to_cart_url }}" class="btn btn-primary ms-1" type="submit">
+                        Add to cart
+                        <i class="fas fa-shopping-cart ms-1"></i>
+                    </a>
+                    <a href=" {{ object.get_remove_from_cart }}" class="btn btn-danger ms-1" type="submit">
+                        Remove from cart
+                    </a>
                 </div>
                 <!--Content-->
             </div>
@@ -214,7 +223,7 @@
     <!-- Grid container -->
 
     <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2); text-color: #e0e0e0;">
+    <div class="text-center p-3">
         © 2024 Copyright:
         <a class="text-white" href="">Company</a>
     </div>
